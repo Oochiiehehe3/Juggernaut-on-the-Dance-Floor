@@ -11,5 +11,18 @@ config_version=5
 [application]
 
 config/name="JotDF"
-config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://assets/art/temp_art/icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "green",
+"res://assets/art/": "orange",
+"res://assets/instances/": "yellow",
+"res://assets/music/": "teal",
+"res://assets/sound/": "blue",
+"res://resources/": "purple",
+"res://scenes/": "pink",
+"res://scripts/": "gray"
+}

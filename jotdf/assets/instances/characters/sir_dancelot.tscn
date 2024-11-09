@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn1643erx5mad"]
+
+[ext_resource type="SpriteFrames" uid="uid://dmixmcep731p5" path="res://resources/characters/sir_dancelot_anims.tres" id="1_xwvab"]
+
+[node name="SirDancelot" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_xwvab")
+animation = &"temporary"
