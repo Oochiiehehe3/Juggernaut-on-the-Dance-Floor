@@ -19,10 +19,6 @@ config/icon="res://assets/art/temp_art/icon.svg"
 
 buses/default_bus_layout="res://resources/default_bus_layout.tres"
 
-[autoload]
-
-MusicPlayer="*res://assets/instances/music_player.tscn"
-
 [display]
 
 window/size/viewport_width=1920

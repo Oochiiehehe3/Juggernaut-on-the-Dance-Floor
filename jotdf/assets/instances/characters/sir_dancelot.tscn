@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn1643erx5mad"]
+[gd_scene load_steps=5 format=3 uid="uid://dn1643erx5mad"]
 
 [ext_resource type="Script" path="res://scripts/playercontroller.gd" id="1_uwt8n"]
 [ext_resource type="SpriteFrames" uid="uid://dmixmcep731p5" path="res://resources/characters/sir_dancelot_anims.tres" id="1_xwvab"]
+[ext_resource type="Script" path="res://scripts/move_detection.gd" id="3_v604k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhu1h"]
 size = Vector2(32, 32)
 
-[node name="SirDancelot" type="CharacterBody2D"]
+[node name="SirDancelot" type="CharacterBody2D" node_paths=PackedStringArray("move_detection")]
 script = ExtResource("1_uwt8n")
+move_detection = NodePath("MoveDetection")
+current_state = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0, 0.784314, 1, 1)
@@ -16,28 +19,40 @@ sprite_frames = ExtResource("1_xwvab")
 animation = &"temporary"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
-[node name="MoveDetection" type="Area2D" parent="."]
+[node name="MoveDetection" type="Node2D" parent="." node_paths=PackedStringArray("up_detector", "down_detector", "left_detector", "right_detector")]
+script = ExtResource("3_v604k")
+up_detector = NodePath("Up")
+down_detector = NodePath("Down")
+left_detector = NodePath("Left")
+right_detector = NodePath("Right")
 
-[node name="Up" type="CollisionShape2D" parent="MoveDetection"]
+[node name="Up" type="Area2D" parent="MoveDetection"]
 position = Vector2(2.08165e-12, -64)
+
+[node name="Up" type="CollisionShape2D" parent="MoveDetection/Up"]
 shape = SubResource("RectangleShape2D_fhu1h")
 debug_color = Color(0, 0.642861, 0.310379, 0.42)
 
-[node name="Down" type="CollisionShape2D" parent="MoveDetection"]
+[node name="Down" type="Area2D" parent="MoveDetection"]
 position = Vector2(2.08165e-12, 64)
+
+[node name="Down" type="CollisionShape2D" parent="MoveDetection/Down"]
 shape = SubResource("RectangleShape2D_fhu1h")
 debug_color = Color(0, 0.642861, 0.310379, 0.42)
 
-[node name="Left" type="CollisionShape2D" parent="MoveDetection"]
+[node name="Left" type="Area2D" parent="MoveDetection"]
 position = Vector2(-64, 2.08165e-12)
+
+[node name="Left" type="CollisionShape2D" parent="MoveDetection/Left"]
 shape = SubResource("RectangleShape2D_fhu1h")
 debug_color = Color(0, 0.642861, 0.310379, 0.42)
 
-[node name="Right" type="CollisionShape2D" parent="MoveDetection"]
+[node name="Right" type="Area2D" parent="MoveDetection"]
 position = Vector2(64, 2.08165e-12)
+
+[node name="Right" type="CollisionShape2D" parent="MoveDetection/Right"]
 shape = SubResource("RectangleShape2D_fhu1h")
 debug_color = Color(0, 0.642861, 0.310379, 0.42)
 
@@ -45,7 +60,16 @@ debug_color = Color(0, 0.642861, 0.310379, 0.42)
 collision_layer = 16
 collision_mask = 16
 
-[node name="Up" type="CollisionShape2D" parent="HitDetection"]
+[node name="Hitbox" type="CollisionShape2D" parent="HitDetection"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_fhu1h")
 debug_color = Color(0.999734, 0, 0.103061, 0.42)
+
+[connection signal="body_shape_entered" from="MoveDetection/Up" to="MoveDetection" method="_on_up_body_shape_entered"]
+[connection signal="body_shape_exited" from="MoveDetection/Up" to="MoveDetection" method="_on_up_body_shape_exited"]
+[connection signal="body_shape_entered" from="MoveDetection/Down" to="MoveDetection" method="_on_down_body_shape_entered"]
+[connection signal="body_shape_exited" from="MoveDetection/Down" to="MoveDetection" method="_on_down_body_shape_exited"]
+[connection signal="body_shape_entered" from="MoveDetection/Left" to="MoveDetection" method="_on_left_body_shape_entered"]
+[connection signal="body_shape_exited" from="MoveDetection/Left" to="MoveDetection" method="_on_left_body_shape_exited"]
+[connection signal="body_shape_entered" from="MoveDetection/Right" to="MoveDetection" method="_on_right_body_shape_entered"]
+[connection signal="body_shape_exited" from="MoveDetection/Right" to="MoveDetection" method="_on_right_body_shape_exited"]
