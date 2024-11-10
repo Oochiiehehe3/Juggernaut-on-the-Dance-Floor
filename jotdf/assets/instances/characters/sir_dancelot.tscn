@@ -1,9 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://dn1643erx5mad"]
+[gd_scene load_steps=4 format=3 uid="uid://dn1643erx5mad"]
 
+[ext_resource type="Script" path="res://scripts/playercontroller.gd" id="1_uwt8n"]
 [ext_resource type="SpriteFrames" uid="uid://dmixmcep731p5" path="res://resources/characters/sir_dancelot_anims.tres" id="1_xwvab"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhu1h"]
+size = Vector2(32, 32)
+
 [node name="SirDancelot" type="CharacterBody2D"]
+script = ExtResource("1_uwt8n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0, 0.784314, 1, 1)
+scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("1_xwvab")
 animation = &"temporary"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+
+[node name="MoveDetection" type="Area2D" parent="."]
+
+[node name="Up" type="CollisionShape2D" parent="MoveDetection"]
+position = Vector2(2.08165e-12, -64)
+shape = SubResource("RectangleShape2D_fhu1h")
+debug_color = Color(0, 0.642861, 0.310379, 0.42)
+
+[node name="Down" type="CollisionShape2D" parent="MoveDetection"]
+position = Vector2(2.08165e-12, 64)
+shape = SubResource("RectangleShape2D_fhu1h")
+debug_color = Color(0, 0.642861, 0.310379, 0.42)
+
+[node name="Left" type="CollisionShape2D" parent="MoveDetection"]
+position = Vector2(-64, 2.08165e-12)
+shape = SubResource("RectangleShape2D_fhu1h")
+debug_color = Color(0, 0.642861, 0.310379, 0.42)
+
+[node name="Right" type="CollisionShape2D" parent="MoveDetection"]
+position = Vector2(64, 2.08165e-12)
+shape = SubResource("RectangleShape2D_fhu1h")
+debug_color = Color(0, 0.642861, 0.310379, 0.42)
+
+[node name="HitDetection" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="Up" type="CollisionShape2D" parent="HitDetection"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_fhu1h")
+debug_color = Color(0.999734, 0, 0.103061, 0.42)

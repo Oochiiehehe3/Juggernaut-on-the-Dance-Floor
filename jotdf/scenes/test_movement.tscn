@@ -1,3 +1,26 @@
-[gd_scene format=3 uid="uid://clpemmrkjq76f"]
+[gd_scene load_steps=5 format=3 uid="uid://clpemmrkjq76f"]
+
+[ext_resource type="Texture2D" uid="uid://c1ca0x0n7ekc5" path="res://assets/art/temp_art/icon.svg" id="1_sgybs"]
+[ext_resource type="PackedScene" uid="uid://dn1643erx5mad" path="res://assets/instances/characters/sir_dancelot.tscn" id="2_1ctov"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dl18l"]
+texture = ExtResource("1_sgybs")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:1/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qvi01"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_dl18l")
 
 [node name="TestMovement" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-32, -32)
+tile_set = SubResource("TileSet_qvi01")
+format = 2
+layer_0/tile_data = PackedInt32Array(-196612, 0, 0, -131076, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 0, 0, 131068, 0, 1, 196604, 0, 1, 65533, 0, 0, -3, 0, 0, -65539, 0, 0, -131075, 0, 0, -196611, 0, 0, 65534, 0, 0, 131070, 0, 1, 196606, 0, 1, 262142, 0, 1, -2, 0, 0, -65537, 0, 0, -131073, 0, 0, -196609, 0, 0, -1, 0, 0, 196605, 0, 1, 131069, 0, 1, 262141, 0, 1, 262143, 0, 1, 196607, 0, 1, 131071, 0, 1, 65535, 0, 0, -65538, 0, 0, -131074, 0, 0, -196610, 0, 0, -262144, 65536, 0, -262143, 65536, 0, -262142, 65536, 0, -262141, 65536, 0, -196605, 65536, 0, -131069, 65536, 0, -65533, 65536, 0, 3, 65536, 1, 65539, 65536, 1, 131075, 65536, 1, 196611, 65536, 1, 196610, 65536, 1, 196609, 65536, 1, 196608, 0, 1, 262140, 0, 1, 327676, 0, 1, 327677, 0, 1, 327678, 0, 1, 327679, 0, 1, 262144, 0, 1, 196612, 65536, 1, 262148, 65536, 1, 262147, 65536, 1, 262146, 65536, 1, 262145, 65536, 1, 131076, 65536, 1, 65540, 65536, 1, 4, 65536, 1, -65532, 65536, 0, -131068, 65536, 0, -196604, 65536, 0, -262140, 65536, 0, -196608, 65536, 0, -131072, 65536, 0, -65536, 65536, 0, 0, 0, 0, 65536, 0, 1, 131072, 0, 1, 131073, 65536, 1, 65537, 65536, 1, 1, 65536, 1, -65535, 65536, 0, -131071, 65536, 0, -196607, 65536, 0, -196606, 65536, 0, -131070, 65536, 0, -65534, 65536, 0, 2, 65536, 1, 131074, 65536, 1, 65538, 65536, 1)
+
+[node name="SirDancelot" parent="." instance=ExtResource("2_1ctov")]

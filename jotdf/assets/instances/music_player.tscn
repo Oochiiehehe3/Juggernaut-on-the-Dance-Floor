@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbeko8avov1wc"]
+
+[ext_resource type="AudioStream" uid="uid://cyf73tnw0lya2" path="res://assets/music/boppin_beatdown.wav" id="1_6jxd3"]
+[ext_resource type="Script" path="res://scripts/music_player.gd" id="2_8r105"]
+[ext_resource type="Script" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="3_8pfa3"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" node_paths=PackedStringArray("beats")]
+stream = ExtResource("1_6jxd3")
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_8r105")
+beats = NodePath("RhythmNotifier")
+
+[node name="RhythmNotifier" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("3_8pfa3")
+bpm = 130.0
+beat_length = 0.461538
+audio_stream_player = NodePath("..")
