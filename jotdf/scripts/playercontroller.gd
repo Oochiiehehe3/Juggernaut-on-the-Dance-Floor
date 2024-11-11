@@ -12,8 +12,9 @@ var music_player: AudioStreamPlayer
 const SPEED = 125.0
 var can_move = true
 
-func ready():
-	pass
+func _ready():
+	SaveData.player = self
+	print(SaveData.player)
 
 func _physics_process(delta):
 	
@@ -25,19 +26,23 @@ func _physics_process(delta):
 				#move can_move set out here in order to block holding down the keys
 				if move_detection.left_blocked == false and check_beat() == true:
 					can_move = false
-					position.x -= 64
+					var tween = create_tween()
+					tween.tween_property(self, "position", Vector2(position.x - 64, position.y), 0.25).set_trans(Tween.TRANS_SINE)#.set_trans(Tween.TRANS_SPRING)
 			elif Input.is_action_pressed("Right"):
 				if move_detection.right_blocked == false and check_beat() == true:
 					can_move = false
-					position.x += 64
+					var tween = create_tween()
+					tween.tween_property(self, "position", Vector2(position.x + 64, position.y), 0.25).set_trans(Tween.TRANS_SINE)
 			elif Input.is_action_pressed("Up"):
 				if move_detection.up_blocked == false and check_beat() == true:
 					can_move = false
-					position.y -= 64
+					var tween = create_tween()
+					tween.tween_property(self, "position", Vector2(position.x, position.y - 64), 0.25).set_trans(Tween.TRANS_SINE)
 			elif Input.is_action_pressed("Down"):
 				if move_detection.down_blocked == false and check_beat() == true:
 					can_move = false
-					position.y += 64
+					var tween = create_tween()
+					tween.tween_property(self, "position", Vector2(position.x, position.y + 64), 0.25).set_trans(Tween.TRANS_SINE)
 			
 	elif current_state == States.PEACE: #If there are no enemies around, switch to smooth movement
 		if Input.is_action_pressed("Up"):
@@ -71,3 +76,15 @@ func check_beat():
 		
 func beat_reset():
 	can_move = true
+
+func change_state(state):
+	if current_state != state:
+		current_state = state
+		if state == States.COMBAT:
+			#print(position)
+			can_move = false
+			var tween = create_tween()
+			tween.tween_property(self, "position", Vector2(snapped(position.x/64, 1)*64, snapped(position.y/64, 1)*64), 0.25).set_trans(Tween.TRANS_SINE)
+			#position.x = snapped(position.x/64, 1)*64
+			#position.y = snapped(position.y/64, 1)*64
+			#print(position)

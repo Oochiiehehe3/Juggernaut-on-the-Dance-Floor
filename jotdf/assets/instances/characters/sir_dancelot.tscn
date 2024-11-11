@@ -1,15 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn1643erx5mad"]
+[gd_scene load_steps=6 format=3 uid="uid://dn1643erx5mad"]
 
 [ext_resource type="Script" path="res://scripts/playercontroller.gd" id="1_uwt8n"]
 [ext_resource type="SpriteFrames" uid="uid://dmixmcep731p5" path="res://resources/characters/sir_dancelot_anims.tres" id="1_xwvab"]
 [ext_resource type="Script" path="res://scripts/move_detection.gd" id="3_v604k"]
+[ext_resource type="Shape2D" uid="uid://s3od47ldcph2" path="res://resources/characters/hitbox.tres" id="4_m5hqv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhu1h"]
-size = Vector2(32, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rf5o"]
+size = Vector2(64, 64)
 
 [node name="SirDancelot" type="CharacterBody2D" node_paths=PackedStringArray("move_detection")]
 script = ExtResource("1_uwt8n")
 move_detection = NodePath("MoveDetection")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2rf5o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0, 0.784314, 1, 1)
@@ -30,37 +34,37 @@ right_detector = NodePath("Right")
 position = Vector2(2.08165e-12, -64)
 
 [node name="Up" type="CollisionShape2D" parent="MoveDetection/Up"]
-shape = SubResource("RectangleShape2D_fhu1h")
+shape = ExtResource("4_m5hqv")
 debug_color = Color(0, 0.642861, 0.310379, 0.42)
 
 [node name="Down" type="Area2D" parent="MoveDetection"]
 position = Vector2(2.08165e-12, 64)
 
 [node name="Down" type="CollisionShape2D" parent="MoveDetection/Down"]
-shape = SubResource("RectangleShape2D_fhu1h")
+shape = ExtResource("4_m5hqv")
 debug_color = Color(0, 0.642861, 0.310379, 0.42)
 
 [node name="Left" type="Area2D" parent="MoveDetection"]
 position = Vector2(-64, 2.08165e-12)
 
 [node name="Left" type="CollisionShape2D" parent="MoveDetection/Left"]
-shape = SubResource("RectangleShape2D_fhu1h")
+shape = ExtResource("4_m5hqv")
 debug_color = Color(0, 0.642861, 0.310379, 0.42)
 
 [node name="Right" type="Area2D" parent="MoveDetection"]
 position = Vector2(64, 2.08165e-12)
 
 [node name="Right" type="CollisionShape2D" parent="MoveDetection/Right"]
-shape = SubResource("RectangleShape2D_fhu1h")
+shape = ExtResource("4_m5hqv")
 debug_color = Color(0, 0.642861, 0.310379, 0.42)
 
-[node name="HitDetection" type="Area2D" parent="."]
+[node name="HitDetection" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 16
 collision_mask = 16
 
-[node name="Hitbox" type="CollisionShape2D" parent="HitDetection"]
+[node name="HitBox" type="CollisionShape2D" parent="HitDetection"]
 position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_fhu1h")
+shape = ExtResource("4_m5hqv")
 debug_color = Color(0.999734, 0, 0.103061, 0.42)
 
 [connection signal="body_shape_entered" from="MoveDetection/Up" to="MoveDetection" method="_on_up_body_shape_entered"]

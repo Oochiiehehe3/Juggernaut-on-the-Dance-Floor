@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://clpemmrkjq76f"]
+[gd_scene load_steps=7 format=4 uid="uid://clpemmrkjq76f"]
 
 [ext_resource type="Texture2D" uid="uid://c1ca0x0n7ekc5" path="res://assets/art/temp_art/icon.svg" id="1_sgybs"]
 [ext_resource type="PackedScene" uid="uid://dn1643erx5mad" path="res://assets/instances/characters/sir_dancelot.tscn" id="2_1ctov"]
 [ext_resource type="PackedScene" uid="uid://cbeko8avov1wc" path="res://assets/instances/music_player.tscn" id="3_6xf6i"]
+[ext_resource type="PackedScene" uid="uid://bwl8ykhupgvkq" path="res://assets/instances/characters/boring_enemy.tscn" id="3_nm2bk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dl18l"]
 texture = ExtResource("1_sgybs")
@@ -26,6 +27,9 @@ tile_map_data = PackedByteArray("AAD8//z/AAAAAAAAAAD8//3/AAAAAAAAAAD8//7/AAAAAAA
 tile_set = SubResource("TileSet_qvi01")
 
 [node name="SirDancelot" parent="." instance=ExtResource("2_1ctov")]
+
+[node name="BoringEnemy" parent="." instance=ExtResource("3_nm2bk")]
+position = Vector2(704, 0)
 
 [node name="MusicPlayer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_6xf6i")]
 player = NodePath("../SirDancelot")
