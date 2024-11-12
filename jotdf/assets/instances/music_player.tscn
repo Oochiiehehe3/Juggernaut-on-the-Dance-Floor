@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbeko8avov1wc"]
 
-[ext_resource type="AudioStream" uid="uid://lbkd1frt32se" path="res://assets/music/boppin_beatdown.wav" id="1_6jxd3"]
+[ext_resource type="AudioStream" uid="uid://df777s14seyuw" path="res://assets/music/boppin_beatdown.wav" id="1_6jxd3"]
 [ext_resource type="Script" path="res://scripts/music_player.gd" id="2_8r105"]
 [ext_resource type="Script" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="3_8pfa3"]
 

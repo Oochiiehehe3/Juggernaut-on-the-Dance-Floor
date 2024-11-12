@@ -16,6 +16,9 @@ func _ready():
 	SaveData.player = self
 	print(SaveData.player)
 
+func _process(_delta: float) -> void:
+	z_index = int(position.y/32)
+
 func _physics_process(delta):
 	
 	velocity = Vector2.ZERO

@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwl8ykhupgvkq"]
+[gd_scene load_steps=7 format=3 uid="uid://bwl8ykhupgvkq"]
 
+[ext_resource type="Script" path="res://assets/instances/characters/boring_enemy.gd" id="1_62nq2"]
 [ext_resource type="Texture2D" uid="uid://c1ca0x0n7ekc5" path="res://assets/art/temp_art/icon.svg" id="1_keof1"]
 [ext_resource type="PackedScene" uid="uid://bma3mltjrg7fh" path="res://assets/instances/combat_handler.tscn" id="2_7xp3l"]
 [ext_resource type="Shape2D" uid="uid://s3od47ldcph2" path="res://resources/characters/hitbox.tres" id="3_edd08"]
@@ -19,7 +20,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BoringEnemy" type="CharacterBody2D"]
+[node name="BoringEnemy" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_62nq2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)

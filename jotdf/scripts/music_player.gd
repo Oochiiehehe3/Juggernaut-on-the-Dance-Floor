@@ -43,6 +43,9 @@ func _on_rhythm_notifier_beat(_current_beat: int) -> void:
 	time_since_beat = 0
 	if player != null:
 		player.beat_reset()
+		
+	#for enemy in get_tree().get_nodes_in_group("Enemies"):
+		#enemy.z_index = int(enemy.position.y/32)
 
 
 func _on_timer_timeout() -> void:
