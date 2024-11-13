@@ -13,10 +13,12 @@ const SPEED = 125.0
 var can_move = true
 
 func _ready():
+	#sets up a way to save progress
 	SaveData.player = self
-	print(SaveData.player)
+	#print(SaveData.player)
 
 func _process(_delta: float) -> void:
+	#makes player appear behind or in front of things
 	z_index = int(position.y/32)
 
 func _physics_process(delta):
